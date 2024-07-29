@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import cross_icon from "../../asset/images/cross-icon.svg";
-const BurgerMenu = ({ set_menu }) => {
+const BurgerMenu = ({ set_menu, find_location, menu }) => {
   const [animate, set_animate] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       set_animate(true);
     }, 100);
   }, []);
+  //! menu lines and activation
+  //! section link remains
   return (
     <nav className={!animate ? "burger-menu" : "burger-menu animate-menu"}>
       <ul className="burger-ul">
@@ -21,21 +23,20 @@ const BurgerMenu = ({ set_menu }) => {
             <img src={cross_icon} alt="close menu" />
           </button>
         </li>
-        <li className="burger-item">
-          <Link>Overview</Link>
-        </li>
-        <li className="burger-item">
-          <Link>Features</Link>
-        </li>
-        <li className="burger-item">
-          <Link>Showcase</Link>
-        </li>
-        <li className="burger-item">
-          <Link>Mission</Link>
-        </li>
-        <li className="burger-item">
-          <Link>Pricing</Link>
-        </li>
+        {menu.map((mi) => (
+          <li className="burger-item" key={mi.id}>
+            <Link
+              to={mi.href}
+              onClick={() => {
+                set_menu(false);
+                if (mi.href.includes("#"))
+                  find_location(mi.href.replace("/", ""));
+              }}
+            >
+              {mi.text}
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );

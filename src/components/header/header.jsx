@@ -8,7 +8,7 @@ const Header = () => {
   const [menu_items, set_menu_items] = useState([
     {
       id: 1,
-      href: "/",
+      href: "/#overview",
       active: false,
       text: "Overview",
     },
@@ -42,6 +42,16 @@ const Header = () => {
   //! id section links
 
   const [menu, set_menu] = useState(false);
+  const find_location = (id) => {
+    setTimeout(() => {
+      const features = document.querySelector(id).getBoundingClientRect().y;
+
+      window.scrollTo({
+        top: features,
+        behavior: "smooth",
+      });
+    }, 100);
+  };
   return (
     <header className="main-header mm-width">
       <Link to="/" className="main-logo-wrapper">
@@ -51,7 +61,15 @@ const Header = () => {
         <ul className="main-menu-ul">
           {menu_items.map((mi) => (
             <li key={mi.id} className="menu-item">
-              <Link to={`${mi.href}`}>{mi.text}</Link>
+              <Link
+                to={`${mi.href}`}
+                onClick={() => {
+                  if (mi.href.includes("#"))
+                    find_location(mi.href.replace("/", ""));
+                }}
+              >
+                {mi.text}
+              </Link>
             </li>
           ))}
         </ul>
@@ -64,7 +82,15 @@ const Header = () => {
       >
         <img src={burger_menu} alt="menu" width={24} height={20} />
       </button>
-      {menu ? <BurgerMenu set_menu={set_menu} /> : <></>}
+      {menu ? (
+        <BurgerMenu
+          set_menu={set_menu}
+          find_location={find_location}
+          menu={menu_items}
+        />
+      ) : (
+        <></>
+      )}
     </header>
   );
 };

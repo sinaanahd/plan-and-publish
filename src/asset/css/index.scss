@@ -151,6 +151,9 @@ button{
             background-color: $bgc-color;
             border: 1px solid $btn-color;
         }
+        img{
+            width: 39px;
+        }
     }
     .option-texts{
         @include flexMixin(column,flex-start,flex-start);
@@ -194,6 +197,10 @@ button{
         margin: 32px 0;
         font-size: 16px;
         font-weight: 600;
+        transition: $transition;
+        &:hover {
+            background-color: #0150b0;
+        }
     }
     .all-mades-wrapper{
         width: 100%;
@@ -203,6 +210,9 @@ button{
     .maden-col{
         @include flexMixin(column,flex-start,center);
         gap: 8px;
+    }
+    .col-middle{
+        min-width: 340px;
     }
     .maden-span{
         width: 178px;
@@ -247,6 +257,13 @@ button{
         border: 2px solid #3a3a3a;
         font-size: 16px;
         line-height: 24px;
+        color: #3A3A3A;
+        transition: $transition;
+        cursor: pointer;
+        &:hover{
+            border-color: $btn-color;
+            color: #F1F3F6;
+        }
     }
     .circle-plan{
         border-radius: 50%;
@@ -450,6 +467,7 @@ button{
     height: 0;
     transition: all ease-in-out .5s;
     overflow-y: hidden;
+    z-index: 999999;
     button{
         background-color: transparent;
     }
@@ -480,8 +498,200 @@ button{
 
 @media screen and (max-width : 1024px){
     .main-header{
+        padding: 0 44px;
         .main-navigation-wrapper{
             display: none;
         }
+        justify-content: space-between;
+        .burger-menu-btn{
+            display: block;
+        }
     }
+    .hero-part-section{
+        padding: 180px 30px 80px;
+    }
+    .simplcity-value-section {
+        .options-wrapper-part{
+            @include flexMixin(column,flex-start,center);
+        }
+        .valuedoptions-wrapper{
+            width: 100%;
+            @include flexMixin(row,center,flex-start);
+            flex: unset;
+        }
+        .value-option-wrapper{
+            @include flexMixin(column, flex-start, center);
+            background-color: unset;
+            border: none;
+            width: unset;
+            flex: 0 0 120px;
+            padding: 0;
+            height: 100px;
+            img {
+                transition: $transition;
+                transform: scale(1);
+            }
+            &:hover{
+                border: none;
+                background-color: unset;
+            }
+            h3{
+                opacity: 0;
+                color: $btn-color;
+                text-align: center;
+                font-size: 14px;
+                transition: $transition;
+            }
+        }
+        .value-option-wrapper.active{
+            img{
+                transition: $transition;
+                transform: scale(1.8);
+            }
+            .option-texts{
+                display: unset;
+                margin: 20px 0 0;
+                h3{
+                    opacity: 1;
+                }
+                p{
+                    display: none;
+                }
+            }
+        }
+        .semi-active.value-option-wrapper{
+            img {
+                transition: $transition;
+                transform: scale(1.1);
+            }
+            .option-texts {
+                display: none;
+                margin: 0;
+            }
+        }
+        .option-texts{
+            display: none;
+        }
+        .valued-content-wrapper{
+            width: 100%;
+            @include flexMixin(row,flex-end,center);
+        }
+    }
+    .made-by-pap-section{
+        position: relative;
+        &::before , &::after{
+            min-width: 250px;
+            height: 657px;
+            content: " ";
+            background: linear-gradient(90deg, #121212 0%, rgba(18, 18, 18, 0) 100%);
+            display: block;
+            position: absolute;
+            bottom: 0;
+        }
+        &::before{
+            left: 0;
+        }
+        &::after{
+            right: 0;
+            background: linear-gradient(-90deg, #121212 0%, rgba(18, 18, 18, 0) 100%);
+        }
+        .all-mades-wrapper{
+            justify-content: flex-start;
+            overflow-x: scroll;
+            padding: 0 100px 0px 100px;
+            flex-wrap: nowrap;
+        }
+    }
+    .final-cta-section{
+        max-width: 776px;
+    }
+    .main-footer{
+        max-width: 776px;
+        padding: 50px 44px;
+    }
+}
+
+@media screen and (max-width : 400px){
+    .price-section{
+        margin: 91px 0 0;
+        .section-title{
+            font-size: 24px;
+            min-height: 48px;
+            margin: 0;
+        }
+        .section-description{
+            font-size: 14px;
+        }
+        .price-table-wrapper{
+            @include flexMixin(column,flex-start,center);
+            gap: 24px;
+            border: none;
+            padding: 0 24px;
+            height: auto;
+        }
+        .price-col{
+            width: 100%;
+            max-width: 272px;
+            height: 464px;
+            border: 1px solid #3A3A3A;
+            border-radius: 22px;
+        }
+        .price-label{
+            font-size: 24px;
+            flex: 0 0 64px;
+        }
+        .button-wrapper{
+            flex: 0 0 61px;
+        }
+        .price-item{
+            font-size: 14px;
+        }
+    }
+    .request-btn{
+        width: 139px;
+        height: 30px;
+        font-size: 12px;
+    }
+    .pap-in-a-nut-shell-section{
+        padding: 0 24px;
+        max-width: 300px;
+        .section-new-title{
+            font-size: 22px;
+        }
+        .nutshell-descrition{
+            font-size: 14px;
+        }
+    }
+    .main-footer{
+        margin: 56px 0 20px;
+        max-width: 300px;
+        @include flexMixin(row,flex-start,flex-start);
+        height: auto;
+        position: relative;
+        padding: 15px 12px 80px;
+        flex-wrap: wrap;
+        gap: 37px;
+        .social-links-wrapper{
+            margin-bottom: -20px;
+            gap: 12px;
+            img{
+                width: 16px;
+            }
+        }
+        .footer-col-3{
+            flex: 1 0 100%;
+            order: -1;
+            @include flexMixin(row,flex-start,flex-start);
+        }
+        .footer-logo{
+            position: absolute;
+            bottom: 14px;
+            left: 12px;
+            justify-content: flex-start;
+        }
+    }
+}
+
+.video-hero{
+    max-width: 100%;
 }

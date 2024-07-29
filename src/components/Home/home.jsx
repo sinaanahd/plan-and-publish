@@ -23,6 +23,9 @@ import right_2_icon from "../../asset/images/right-2-icon.svg";
 
 import final_img from "../../asset/images/final-cta-img.svg";
 
+import video_hero from "../../asset/videos/hero-video.mp4";
+import scrollToTop from "../scroll";
+
 const Home = () => {
   const [valued_items, set_valued_items] = useState([
     {
@@ -67,7 +70,7 @@ const Home = () => {
       <Helmet>
         <title>Plan and Publish | Home</title>
       </Helmet>
-      <section className="hero-part-section">
+      <section className="hero-part-section" id="overview">
         <div className="content-box">
           <h1 className="hero-title">
             Code-Free
@@ -81,7 +84,15 @@ const Home = () => {
           </p>
           <button className="request-btn">Request early access</button>
           <div className="video-place">
-            <img src={video_img} alt="temp_video" />
+            <video
+              src={video_hero}
+              autoPlay
+              loop
+              type="video/mp4"
+              muted
+              className="video-hero"
+            ></video>
+            {/* <img src={video_img} alt="temp_video" /> */}
           </div>
         </div>
       </section>
@@ -96,7 +107,19 @@ const Home = () => {
         <div className="options-wrapper-part">
           <div className="valuedoptions-wrapper">
             {valued_items.map((vi) => (
-              <div key={vi.id} className="value-option-wrapper">
+              <div
+                key={vi.id}
+                className={
+                  vi.id === valued_contents
+                    ? "active value-option-wrapper"
+                    : Math.abs(vi.id - valued_contents) === 1
+                    ? "value-option-wrapper semi-active"
+                    : "value-option-wrapper"
+                }
+                onClick={() => {
+                  set_valued_contents(vi.id);
+                }}
+              >
                 <img src={vi.img} alt={vi.title} />
                 <div className="option-texts">
                   <h3 className="option-title">{vi.title}</h3>
@@ -110,13 +133,17 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="made-by-pap-section">
+      <section className="made-by-pap-section" id="showcase">
         <h2 className="section-title">Made by PAP</h2>
         <p className="section-description">
           Navigating the path forward. Effortless app creation, no coding skills
           needed. Together, let's propel your business to new heights.
         </p>
-        <Link to="/pricing" className="view-packages-link">
+        <Link
+          to="/pricing"
+          className="view-packages-link"
+          onClick={scrollToTop}
+        >
           View Packages
         </Link>
         <div className="all-mades-wrapper">
@@ -169,7 +196,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="plan-create-section">
+      <section className="plan-create-section" id="mission">
         <h2 className="section-title">Plan, Create, Design, Publish</h2>
         <p className="section-description">
           We’re not just experts in the filed. We’re dedicated enthusiasts.
