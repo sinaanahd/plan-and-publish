@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-import video_img from "../../asset/images/Video_Frame.svg";
-import sample_valued from "../../asset/images/sample-option.svg";
-
 import valued_icon_1 from "../../asset/images/valued-icon-1.svg";
 import valued_icon_2 from "../../asset/images/valued-icon-2.svg";
 import valued_icon_3 from "../../asset/images/valued-icon-3.svg";
@@ -82,7 +79,7 @@ const Home = () => {
       content: valued_video_5,
     },
   ]);
-  const [valued_contents, set_valued_contents] = useState(3);
+  const [valued_contents, set_valued_contents] = useState(1);
   return (
     <>
       <Helmet>
@@ -113,6 +110,10 @@ const Home = () => {
               type="video/mp4"
               muted
               className="video-hero"
+              width={936}
+              height={477}
+              playsinline
+              preload
             ></video>
             {/* <img src={video_img} alt="temp_video" /> */}
           </div>
@@ -146,11 +147,15 @@ const Home = () => {
                   src={vi.img[0]}
                   alt={vi.title}
                   className="desktop-valued-icon"
+                  width={39}
+                  height={39}
                 />
                 <img
                   src={vi.id === valued_contents ? vi.img[1] : vi.img[2]}
                   alt={vi.title}
                   className="responsive-valued-item"
+                  width={39}
+                  height={39}
                 />
                 <div className="option-texts">
                   <h3 className="option-title">{vi.title}</h3>
@@ -167,6 +172,10 @@ const Home = () => {
               type="video/mp4"
               muted
               className="video-hero"
+              width={972}
+              height={549}
+              playsinline
+              preload="none"
             ></video>
           </div>
         </div>
@@ -187,18 +196,41 @@ const Home = () => {
         <div className="all-mades-wrapper">
           <div className="maden-col col-left-1">
             <span className="maden-span">
-              <img src={left_1_icon} alt="" />
+              <img
+                loading="lazy"
+                src={left_1_icon}
+                alt="Gimini"
+                width={54}
+                height={56}
+              />
               <span className="maden-texts">
                 <h3 className="maden-title">Gimini</h3>
                 <p className="maden-text">Train your users better.</p>
               </span>
             </span>
-            <img src={left_1} alt="" />
+            <img
+              src={left_1}
+              alt="choose your program"
+              width={178}
+              height={338}
+            />
           </div>
           <div className="maden-col col-left-2">
-            <img src={left_2} alt="" />
+            <img
+              loading="lazy"
+              src={left_2}
+              alt="under the mask"
+              width={178}
+              height={339}
+            />
             <span className="maden-span">
-              <img src={left_2_icon} alt="" />
+              <img
+                loading="lazy"
+                src={left_2_icon}
+                alt="Mooviz"
+                width={54}
+                height={56}
+              />
               <span className="maden-texts">
                 <h3 className="maden-title">Mooviz</h3>
                 <p className="maden-text">Express your ideas.</p>
@@ -206,11 +238,23 @@ const Home = () => {
             </span>
           </div>
           <div className="maden-col col-middle">
-            <img src={middle_img} alt="made by pap middle" />
+            <img
+              loading="lazy"
+              src={middle_img}
+              alt="made by pap middle"
+              width={340}
+              height={460}
+            />
           </div>
           <div className="maden-col col-right-1">
             <span className="maden-span">
-              <img src={right_1_icon} alt="" />
+              <img
+                loading="lazy"
+                src={right_1_icon}
+                alt="saving smile"
+                width={54}
+                height={56}
+              />
               <span className="maden-texts">
                 <h3 className="maden-title">Saving Smile</h3>
                 <p className="maden-text">
@@ -218,12 +262,18 @@ const Home = () => {
                 </p>
               </span>
             </span>
-            <img src={right_1} alt="" />
+            <img loading="lazy" src={right_1} alt="" />
           </div>
           <div className="maden-col col-right-2">
-            <img src={right_2} alt="" />
+            <img loading="lazy" src={right_2} alt="" />
             <span className="maden-span">
-              <img src={right_2_icon} alt="" />
+              <img
+                loading="lazy"
+                src={right_2_icon}
+                alt="Hope , Happines , Smiles"
+                width={178}
+                height={339}
+              />
               <span className="maden-texts">
                 <h3 className="maden-title">My UNI</h3>
                 <p className="maden-text">

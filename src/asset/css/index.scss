@@ -62,6 +62,7 @@ button{
     height: 100px;
     @include flexMixin(row,flex-start,center);
     gap: 140px;
+    padding: 0 20px;
     .main-navigation-wrapper{
         width: 100%;
         @include flexMixin(row,flex-start,center);
@@ -159,6 +160,7 @@ button{
         @include flexMixin(row,flex-end,flex-start);
         gap: 42px;
         max-width: 1402px;
+        padding: 0 20px;
     }
     .valuedoptions-wrapper{
         flex: 0 0 348px;
@@ -250,8 +252,16 @@ button{
     }
     .all-mades-wrapper{
         width: 100%;
-        @include flexMixin(row,center,center);
+        max-width: 1168px;
+        @include flexMixin(row,flex-start,center);
         gap: 15px;
+        padding: 0 20px;
+        overflow-x: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
     .maden-col{
         @include flexMixin(column,flex-start,center);
@@ -287,7 +297,7 @@ button{
 .plan-create-section{
     width: 100%;
     @include flexMixin(column,flex-start,center);
-    padding: 32px 0;
+    padding: 32px 20px;
     .plans-wrapper{
         display: grid;
         grid-template-columns: repeat(2,262px);
@@ -491,6 +501,7 @@ button{
     @include flexMixin(column,flex-start,flex-start);
     gap: 16px;
     max-width: 936px;
+    padding: 20px;
     .section-new-title{
         font-size: 32px;
         font-weight: 700px;
@@ -662,11 +673,7 @@ button{
             overflow-x: scroll;
             padding: 0 20px 0px 20px;
             flex-wrap: nowrap;
-            &::-webkit-scrollbar {
-                display: none;
-            }
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+            
         }
     }
     .final-cta-section{
@@ -678,7 +685,7 @@ button{
     }
 }
 
-@media screen and (max-width : 400px){
+@media screen and (max-width : 768px){
     .price-section{
         margin: 91px 0 0;
         .section-title{
@@ -788,7 +795,7 @@ button{
         }
         .valuedoptions-wrapper {
             width: 100%;
-            @include flexMixin(row, flex-start, center);
+            @include flexMixin(row, space-between, center);
             padding: 10px 40px 10px 40px;
             gap: 32px;
             overflow: scroll;
@@ -879,4 +886,5 @@ button{
 
 .video-hero{
     max-width: 100%;
+    height: auto!important;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import main_logo from "../../asset/images/main-logo.svg";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
@@ -9,7 +9,7 @@ const Header = () => {
     {
       id: 1,
       href: "/#overview",
-      active: false,
+      active: window.location.pathname !== "/pricing",
       text: "Overview",
     },
     {
@@ -33,7 +33,7 @@ const Header = () => {
     {
       id: 5,
       href: "/pricing",
-      active: false,
+      active: window.location.pathname === "/pricing",
       text: "Pricing",
     },
   ]);
@@ -44,14 +44,38 @@ const Header = () => {
   const [menu, set_menu] = useState(false);
   const find_location = (id) => {
     setTimeout(() => {
-      const features = document.querySelector(id).getBoundingClientRect().y;
-
+      // const features = document.querySelector(id).getBoundingClientRect().y;
+      // window.scrollTo({
+      //   top: features,
+      //   behavior: "smooth",
+      // });
+      const features = document.querySelector(id).offsetTop;
+      // const features = document
+      //   .querySelector(id)
+      //   .getBoundingClientRect().offsetTop;
       window.scrollTo({
         top: features,
         behavior: "smooth",
       });
-    }, 100);
+    }, 1);
   };
+  const active_setter = (id) => {
+    const old_menu_items = [...menu_items];
+    if (id === 5) {
+      old_menu_items[id - 1].active = true;
+      old_menu_items[0].active = false;
+    } else {
+      old_menu_items[4].active = false;
+      old_menu_items[0].active = true;
+    }
+    set_menu_items(old_menu_items);
+  };
+  useEffect(() => {
+    setInterval(() => {
+      const path = window.location.pathname;
+      if (path === "/pricing") active_setter(5);
+    }, 500);
+  });
   return (
     <header className="main-header mm-width">
       <Link to="/" className="main-logo-wrapper">
@@ -60,10 +84,14 @@ const Header = () => {
       <nav className="main-navigation-wrapper">
         <ul className="main-menu-ul">
           {menu_items.map((mi) => (
-            <li key={mi.id} className="menu-item">
+            <li
+              key={mi.id}
+              className={mi.active ? "menu-item active" : "menu-item"}
+            >
               <Link
                 to={`${mi.href}`}
                 onClick={() => {
+                  active_setter(mi.id);
                   if (mi.href.includes("#"))
                     find_location(mi.href.replace("/", ""));
                 }}

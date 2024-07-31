@@ -22,7 +22,7 @@ const Footer = () => {
         top: features,
         behavior: "smooth",
       });
-      console.log(document.querySelector(id).getBoundingClientRect());
+      // console.log(document.querySelector(id).getBoundingClientRect());
     }, 100);
   };
   return (
@@ -82,27 +82,32 @@ const Footer = () => {
       </div>
       <div className="footer-col footer-col-3">
         <span className="social-links-wrapper">
-          <a href="" className="social-link-wrapper">
-            <img src={social_icon_1} alt="" />
+          <a href="#" className="social-link-wrapper">
+            <img src={social_icon_1} alt="you tube" width={24} height={22} />
           </a>
-          <a href="" className="social-link-wrapper">
-            <img src={social_icon_2} alt="" />
+          <a href="#" className="social-link-wrapper">
+            <img src={social_icon_2} alt="linkedin" width={24} height={25} />
           </a>
-          <a href="" className="social-link-wrapper">
-            <img src={social_icon_3} alt="" />
+          <a href="#" className="social-link-wrapper">
+            <img src={social_icon_3} alt="instagram" width={24} height={25} />
           </a>
-          <a href="" className="social-link-wrapper">
-            <img src={social_icon_4} alt="" />
+          <a href="#" className="social-link-wrapper">
+            <img src={social_icon_4} alt="facebook" width={24} height={25} />
           </a>
-          <a href="" className="social-link-wrapper">
-            <img src={social_icon_5} alt="" />
+          <a href="#" className="social-link-wrapper">
+            <img src={social_icon_5} alt="mail" width={24} height={22} />
           </a>
-          <a href="" className="social-link-wrapper">
-            <img src={social_icon_6} alt="" />
+          <a href="#" className="social-link-wrapper">
+            <img src={social_icon_6} alt="twitter" width={24} height={25} />
           </a>
         </span>
         <Link to="/" className="footer-logo" onClick={scrollToTop}>
-          <img src={footer_logo} alt="" />
+          <img
+            width={153}
+            height={76}
+            src={footer_logo}
+            alt="plan and publish"
+          />
         </Link>
       </div>
     </footer>
