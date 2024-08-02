@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 const Pricing = () => {
   return (
     <>
+      <Helmet>
+        <title>Plan and Publish | Pricing</title>
+      </Helmet>
       <section className="price-section">
         <h1 className="section-title">Your app, your way!</h1>
         <p className="section-description">

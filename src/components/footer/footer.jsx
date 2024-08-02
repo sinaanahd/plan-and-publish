@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-
-import scrollToTop from "../scroll";
+import { Link } from "react-router-dom";
+import scrollToTop from "../functions/scroll";
+import handleScroll from "../functions/menu-scroll";
 
 import social_icon_1 from "../../asset/images/social-icon-1.svg";
 import social_icon_2 from "../../asset/images/social-icon-2.svg";
@@ -12,19 +12,6 @@ import social_icon_6 from "../../asset/images/social-icon-6.svg";
 
 import footer_logo from "../../asset/images/footer-logo.svg";
 const Footer = () => {
-  const find_location = (id) => {
-    setTimeout(() => {
-      const features = document.querySelector(id).offsetTop;
-      // const features = document
-      //   .querySelector(id)
-      //   .getBoundingClientRect().offsetTop;
-      window.scrollTo({
-        top: features,
-        behavior: "smooth",
-      });
-      // console.log(document.querySelector(id).getBoundingClientRect());
-    }, 100);
-  };
   return (
     <footer className="main-footer">
       <div className="footer-col footer-col-1">
@@ -32,7 +19,7 @@ const Footer = () => {
           <li className="footer-li">
             <Link
               onClick={() => {
-                find_location("#showcase");
+                handleScroll("showcase");
               }}
               to="/#showcase"
               className="footer-link"
@@ -43,7 +30,7 @@ const Footer = () => {
           <li className="footer-li">
             <Link
               onClick={() => {
-                find_location("#features");
+                handleScroll("features");
               }}
               to="/#features"
               className="footer-link"
@@ -54,7 +41,7 @@ const Footer = () => {
           <li className="footer-li">
             <Link
               onClick={() => {
-                find_location("#mission");
+                handleScroll("mission");
               }}
               to="/#mission"
               className="footer-link"
@@ -73,7 +60,7 @@ const Footer = () => {
         <Link
           to="/#overview"
           onClick={() => {
-            find_location("#overview");
+            handleScroll("overview");
           }}
           className="footer-link"
         >

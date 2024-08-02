@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import main_logo from "../../asset/images/main-logo.svg";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import burger_menu from "../../asset/images/hamburger-icon.svg";
 import BurgerMenu from "./burger-menu";
+import scrollToTop from "../functions/scroll";
+import handleScroll from "../functions/menu-scroll";
 const Header = () => {
   const [menu_items, set_menu_items] = useState([
     {
@@ -43,21 +45,13 @@ const Header = () => {
 
   const [menu, set_menu] = useState(false);
   const find_location = (id) => {
-    setTimeout(() => {
-      // const features = document.querySelector(id).getBoundingClientRect().y;
-      // window.scrollTo({
-      //   top: features,
-      //   behavior: "smooth",
-      // });
-      const features = document.querySelector(id).offsetTop;
-      // const features = document
-      //   .querySelector(id)
-      //   .getBoundingClientRect().offsetTop;
-      window.scrollTo({
-        top: features,
-        behavior: "smooth",
-      });
-    }, 1);
+    // setTimeout(() => {
+    //   const features = document.querySelector(id).offsetTop;
+    //   window.scrollTo({
+    //     top: features,
+    //     behavior: "smooth",
+    //   });
+    // }, 100);
   };
   const active_setter = (id) => {
     const old_menu_items = [...menu_items];
@@ -74,11 +68,15 @@ const Header = () => {
     setInterval(() => {
       const path = window.location.pathname;
       if (path === "/pricing") active_setter(5);
+      else {
+        active_setter(1);
+      }
     }, 500);
   });
+
   return (
     <header className="main-header mm-width">
-      <Link to="/" className="main-logo-wrapper">
+      <Link to="/" className="main-logo-wrapper" onClick={scrollToTop}>
         <img src={main_logo} alt="Plan and Publish" width={96} height={32} />
       </Link>
       <nav className="main-navigation-wrapper">
@@ -89,11 +87,11 @@ const Header = () => {
               className={mi.active ? "menu-item active" : "menu-item"}
             >
               <Link
-                to={`${mi.href}`}
+                to={mi.href}
                 onClick={() => {
-                  active_setter(mi.id);
-                  if (mi.href.includes("#"))
-                    find_location(mi.href.replace("/", ""));
+                  if (mi.href.includes("#")) {
+                    handleScroll(mi.href.replace("/#", ""));
+                  }
                 }}
               >
                 {mi.text}
@@ -113,7 +111,7 @@ const Header = () => {
       {menu ? (
         <BurgerMenu
           set_menu={set_menu}
-          find_location={find_location}
+          handleScroll={handleScroll}
           menu={menu_items}
         />
       ) : (

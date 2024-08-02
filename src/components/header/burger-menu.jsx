@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import cross_icon from "../../asset/images/cross-icon.svg";
-const BurgerMenu = ({ set_menu, find_location, menu }) => {
+import { Link } from "react-router-dom";
+const BurgerMenu = ({ set_menu, handleScroll, menu }) => {
   const [animate, set_animate] = useState(false);
   useEffect(() => {
     setTimeout(() => {
@@ -28,9 +28,9 @@ const BurgerMenu = ({ set_menu, find_location, menu }) => {
             <Link
               to={mi.href}
               onClick={() => {
-                set_menu(false);
                 if (mi.href.includes("#"))
-                  find_location(mi.href.replace("/", ""));
+                  handleScroll(mi.href.replace("/#", ""));
+                set_menu(false);
               }}
             >
               {mi.text}
